@@ -1,7 +1,18 @@
 var xhr; // define the global variable to process the AJAX request
 function callDivChange() {
 xhr = new XMLHttpRequest();
-xhr.open("GET", "test33.html", true);
+//get the content out of the text box (as defined in testAJAX.html
+//send it to the server
+var filename = document.getElementById("filename").value;
+xhr.open("GET", filename, true);
+xhr.onreadystatechange = processDivChange;
+try {
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+}
+catch (e) {
+// this only works in internet explorer
+}
+xhr.send();
 xhr.onreadystatechange = processDivChange;
 try {
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
